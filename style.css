@@ -1,0 +1,135 @@
+:root {
+    /* Colores principales */
+    --color-principal: #0E0156;
+    --color-secundario: #6202A3;
+    --color-fondo: #0E0156;
+    --color-texto: #ffffff;
+    --color-blanco: #ffffff;
+
+    /* Fuentes */
+    --fuente-principal: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-blanco);
+    color: var(--color-texto);
+    line-height: 1.5;
+    min-height: 100vh;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Estructura básica */
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.btn-icono img {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* --- BARRA SUPERIOR (Franja Azul arriba) --- */
+.barra-superior {
+    box-sizing: border-box;
+    position: fixed;
+    padding: 0 20px; /* 20px de espacio libre a los lados */
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;                 /* Ajusta este número si quieres la franja más gruesa o delgada */
+    background-color: var(--color-fondo); 
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Línea sutil sobre los íconos */
+
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Esto va a controlar únicamente el tamaño del icono de menú */
+img[src*="3lineas"] {
+    height: 25px;  /* ← Cambia este número (ej. 24px, 28px, 30px) hasta que lo veas igual al de abajo */
+    width: auto;   /* Mantiene la proporción para que no se deforme */
+    object-fit: contain;
+}
+
+img[src*="flecha"] {
+    height: 25px;  /* ← Cambia este número (ej. 24px, 28px, 30px) hasta que lo veas igual al de abajo */
+    width: auto;   /* Mantiene la proporción para que no se deforme */
+    object-fit: contain;
+}
+
+/* --- BARRA INFERIOR (Iconos abajo) --- */
+.barra-navegacion {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-fondo);
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Línea sutil sobre los íconos */
+
+    /* Alineación horizontal de tus 3 íconos */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.scrollbar {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    right: 0; /* ← Cambiado a 'right' para mandarlo a la derecha */
+    width: 10px; /* ← Ajustá el ancho si es una barra delgada (100% ocupa toda la pantalla) */
+    height: 100vh; /* ← '100vh' hace que ocupe todo el alto de la pantalla de arriba a abajo */
+    background-color: var(--color-blanco);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1500; /* ← Esto lo trae al frente de todo */
+}
+
+.lista-incidentes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre botones */
+    margin-top: 20px;
+}
+
+/*PANTALLA REPORTAR INCIDENTES*/
+.btn-incidente {
+    background-color: #f0f0f5;
+    color: #0E0156;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
