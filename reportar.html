@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendoza Alerta - Reportar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="barra-superior">
+            <a href="index.html" class="btn-icono-top">
+                <img src="img/flecha.svg" alt="Atrás" width="22">
+            </a>
+            <h1 class="titulo-nav">MENDOZA ALERTA</h1>
+            <button class="btn-icono-top">
+                <img src="img/3lineas.svg" alt="Menú" width="22">
+            </button>
+        </header>
+
+        <main class="contenido-pantalla">
+            <div class="contenedor">
+                <h2 class="titulo-principal central">¿Qué tipo de incidente querés reportar?</h2>
+                
+                <div class="lista-opciones-reporte">
+                    <button class="opcion-item">Árbol caído</button>
+                    <button class="opcion-item">Cables sueltos/cortados</button>
+                    <button class="opcion-item">Corte de electricidad</button>
+                    <button class="opcion-item">Corte de agua</button>
+                </div>
+
+                <button id="btn-disparar-reporte" class="btn-enviar-reporte">Reportar incidente</button>
+
+                <div class="recuadro-emergencia">
+                    <p>¿Es una emergencia urgente?<br>Si hay peligro inminente, por favor llamá directamente al 911.</p>
+                    <button class="btn-911">911</button>
+                </div>
+            </div>
+        </main>
+
+        <div id="modal-exito" class="capa-bloqueo" style="display: none;">
+            <div class="ventana-alerta-exito">
+                <div class="circulo-tilde">✓</div>
+                <h3>REPORTE ENVIADO CON ÉXITO</h3>
+                <p>El municipio ya fue notificado de la situación.</p>
+                <button id="btn-entendido" class="btn-aceptar-exito">Entendido</button>
+            </div>
+        </div>
+
+        <nav class="barra-navegacion">
+            <a href="index.html" class="item-nav">
+                <img src="img/inicio.svg" alt="Inicio" width="26">
+                <span>Inicio</span>
+            </a>
+            <a href="reportar.html" class="item-nav activo">
+                <img src="img/reportar banderita.svg" alt="Reportar" width="26">
+                <span>Reportar</span>
+            </a>
+            <a href="perfil.html" class="item-nav">
+                <img src="img/perfil personita.svg" alt="Perfil" width="26">
+                <span>Perfil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        const btnReportar = document.getElementById('btn-disparar-reporte');
+        const modalExito = document.getElementById('modal-exito');
+        const btnEntendido = document.getElementById('btn-entendido');
+
+        // Muestra el cartel de éxito al hacer clic en reportar
+        btnReportar.addEventListener('click', () => {
+            modalExito.style.display = 'flex';
+        });
+
+        // Oculta por completo el cartel al hacer clic en Entendido
+        btnEntendido.addEventListener('click', () => {
+            modalExito.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

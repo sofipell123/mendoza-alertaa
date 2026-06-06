@@ -1,135 +1,638 @@
-:root {
-    /* Colores principales */
-    --color-principal: #0E0156;
-    --color-secundario: #6202A3;
-    --color-fondo: #0E0156;
-    --color-texto: #ffffff;
-    --color-blanco: #ffffff;
-
-    /* Fuentes */
-    --fuente-principal: 'Inter', sans-serif;
+/* ==========================================================================
+   1. RESET GENERAL Y ESTILOS DE BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    text-decoration: none;
 }
 
 body {
-    font-family: var(--fuente-principal);
-    background-color: var(--color-blanco);
-    color: var(--color-texto);
-    line-height: 1.5;
+    background-color: #cbd5e1; /* Fondo gris para resaltar el celular en la compu */
     min-height: 100vh;
-    margin: 0;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-button {
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-}
-
-/* Estructura básica */
-.contenedor {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.btn-icono {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
-}
-
-.btn-icono img {
-    width: auto;
-    height: 40px;
-    object-fit: contain;
-}
-
-/* --- BARRA SUPERIOR (Franja Azul arriba) --- */
-.barra-superior {
-    box-sizing: border-box;
-    position: fixed;
-    padding: 0 20px; /* 20px de espacio libre a los lados */
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 60px;                 /* Ajusta este número si quieres la franja más gruesa o delgada */
-    background-color: var(--color-fondo); 
-    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Línea sutil sobre los íconos */
-
-    
-    display: flex;
-    justify-content: space-around;
     align-items: center;
-    z-index: 1000;
+    padding: 20px 0;
 }
 
-/* Esto va a controlar únicamente el tamaño del icono de menú */
-img[src*="3lineas"] {
-    height: 25px;  /* ← Cambia este número (ej. 24px, 28px, 30px) hasta que lo veas igual al de abajo */
-    width: auto;   /* Mantiene la proporción para que no se deforme */
-    object-fit: contain;
-}
-
-img[src*="flecha"] {
-    height: 25px;  /* ← Cambia este número (ej. 24px, 28px, 30px) hasta que lo veas igual al de abajo */
-    width: auto;   /* Mantiene la proporción para que no se deforme */
-    object-fit: contain;
-}
-
-/* --- BARRA INFERIOR (Iconos abajo) --- */
-.barra-navegacion {
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 0; 
-    left: 0;
+/* ==========================================================================
+   2. CONTENEDOR MÓVIL (ESTILO FIJO DE CELULAR PARA LA COMPU)
+   ========================================================================== */
+.app-container {
     width: 100%;
-    height: 60px;
-    background-color: var(--color-fondo);
-    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Línea sutil sobre los íconos */
-
-    /* Alineación horizontal de tus 3 íconos */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-}
-
-.scrollbar {
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    right: 0; /* ← Cambiado a 'right' para mandarlo a la derecha */
-    width: 10px; /* ← Ajustá el ancho si es una barra delgada (100% ocupa toda la pantalla) */
-    height: 100vh; /* ← '100vh' hace que ocupe todo el alto de la pantalla de arriba a abajo */
-    background-color: var(--color-blanco);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: 1500; /* ← Esto lo trae al frente de todo */
-}
-
-.lista-incidentes {
+    max-width: 410px;
+    height: 820px;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaciado entre botones */
-    margin-top: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
 }
 
-/*PANTALLA REPORTAR INCIDENTES*/
-.btn-incidente {
-    background-color: #f0f0f5;
-    color: #0E0156;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: left;
+/* ==========================================================================
+   3. COMPONENTES COMUNES (ENCABEZADO Y NAVEGACIÓN)
+   ========================================================================== */
+.barra-superior {
+    background-color: #0e0156; /* Azul Oscuro de Mendoza Alerta */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+}
+
+.titulo-nav {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.btn-icono-top {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.contenido-pantalla {
+    padding: 24px 20px;
+    flex-grow: 1;
+    overflow-y: auto; /* Activa scroll si el contenido supera el alto del celu */
+}
+
+.contenedor {
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-principal {
+    font-size: 15px;
+    color: #0e0156;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.titulo-principal.central {
+    text-align: center;
+    font-weight: 600;
+    color: #333333;
+    text-transform: none;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+/* Barra de Navegación Inferior */
+.barra-navegacion {
+    background-color: #0e0156;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.item-nav {
+    background: none;
+    border: none;
+    color: #9aa0a6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.item-nav.activo {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   4. PANTALLA: ALERTA GENERAL (altamontana.html)
+   ========================================================================== */
+/* --- COMPONENTE DE LA PANTALLA DE BIENVENIDA (index.html) --- */
+
+.app-container-bienvenida {
+    width: 100%;
+    max-width: 410px;
+    height: 820px;
+    background-color: #0e0156; /* Fondo azul completo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+
+/* Contenedor del Logo */
+.bloque-logo {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-bienvenida {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Frase Central */
+.frase-bienvenida {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 280px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Botón "Crear cuenta" */
+.bloque-botones {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-crear-cuenta {
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    color: #0e0156;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: #f1f3f4;
+}
+
+.btn-crear-cuenta:active {
+    transform: scale(0.98);
+}
+
+/* --- ESTILOS PARA LAS PANTALLAS DE AUTENTICACIÓN (Registro, Login, Recuperar) --- */
+
+.app-container-auth {
+    width: 100%;
+    max-width: 410px;
+    height: 820px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.contenedor-auth {
+    width: 100%;
+}
+
+.titulo-auth {
+    font-size: 24px;
+    color: #0e0156;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.subtitulo-auth {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 32px;
+    line-height: 1.4;
+}
+
+.formulario-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.grupo-input label {
+    font-size: 13px;
+    color: #3c4043;
+    font-weight: 600;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #202124;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.grupo-input input:focus {
+    border-color: #0e0156;
+}
+
+.bloque-olvide {
+    text-align: right;
+    margin-top: -8px;
+}
+
+.enlace-olvide {
+    font-size: 12px;
+    color: #ea4335;
+    font-weight: 600;
+}
+
+.btn-primario-auth {
+    width: 100%;
+    background-color: #0e0156;
+    color: #ffffff;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-primario-auth:hover {
+    background-color: #0b0140;
+}
+
+.enlace-cambio-auth {
+    text-align: center;
+    font-size: 13px;
+    color: #5f6368;
+    margin-top: 28px;
+}
+
+.enlace-cambio-auth a {
+    color: #0e0156;
+    font-weight: 700;
+}
+
+.enlace-cambio-auth a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   5. PANTALLA: DETALLE DEL ZONDA (index.html)
+   ========================================================================== */
+.tarjeta-alerta-roja {
+    background-color: #fce8e6;
+    border-radius: 8px;
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+}
+
+.badge-alerta {
+    background-color: #ea4335;
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.texto-alerta-roja h4 {
+    color: #c5221f;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.texto-alerta-roja p {
+    color: #5f6368;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.tabla-metricas {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+}
+
+.fila-metrica {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #dadce0;
+    font-size: 13px;
+    color: #3c4043;
+}
+
+.fila-metrica:last-child {
+    border-bottom: none;
+}
+
+.titulo-secundario {
+    font-size: 13px;
+    color: #5f6368;
+    margin-bottom: 12px;
+}
+
+.grilla-horas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.caja-clima {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 4px;
+    border-radius: 6px;
+    font-size: 11px;
+    text-align: center;
+    gap: 4px;
+}
+
+.caja-clima span { color: #5f6368; }
+.caja-clima.rojo { background-color: #fce8e6; color: #c5221f; }
+.caja-clima.amarillo { background-color: #fef7e0; color: #b06000; }
+.caja-clima.verde { background-color: #e6f4ea; color: #137333; }
+
+/* ==========================================================================
+   6. PANTALLA: REPORTAR INCIDENTE (reportar.html)
+   ========================================================================== */
+.lista-opciones-reporte {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.opcion-item {
+    background-color: #f1f3f4;
+    border: 1px solid #dadce0;
+    color: #3c4043;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.opcion-item:hover {
+    background-color: #e8eaed;
+}
+
+.btn-enviar-reporte {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 24px;
+    transition: background-color 0.2s;
+}
+
+.btn-enviar-reporte:hover {
+    background-color: #d93025;
+}
+
+.recuadro-emergencia {
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.recuadro-emergencia p {
+    font-size: 12.5px;
+    color: #5f6368;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.btn-911 {
+    background-color: #c5221f;
+    color: white;
+    border: none;
+    padding: 8px 36px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   7. PANTALLA: PERFIL DE USUARIO (perfil.html)
+   ========================================================================== */
+.contenedor-perfil {
+    width: 100%;
+}
+
+.bloque-cabecera-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #dadce0;
+    margin-bottom: 16px;
+}
+
+.circulo-avatar {
+    background-color: #e8eaed;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textos-usuario h3 {
+    font-size: 15px;
+    color: #202124;
+}
+
+.textos-usuario p {
+    font-size: 13px;
+    color: #5f6368;
+}
+
+.menu-lista-opciones {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-opcion-link {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #f1f3f4;
+    padding: 16px 4px;
+    color: #3c4043;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+}
+
+.item-opcion-link.link-rojo {
+    color: #ea4335;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   8. CAPAS DE BLOQUEO Y MODALES (CARTELES DE ÉXITO Y CANCELACIÓN)
+   ========================================================================== */
+.capa-bloqueo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sombra transparente de fondo */
+    justify-content: center;              /* Centra el cartel horizontalmente */
+    align-items: center;                  /* Centra el cartel verticalmente */
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Modal Éxito (Reportar) */
+.ventana-alerta-exito {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.circulo-tilde {
+    width: 50px;
+    height: 50px;
+    background-color: #e6f4ea;
+    color: #137333;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 auto 16px auto;
+}
+
+.ventana-alerta-exito h3 {
+    font-size: 14px;
+    color: #137333;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.ventana-alerta-exito p {
+    font-size: 13px;
+    color: #5f6368;
+    margin-bottom: 20px;
+}
+
+.btn-aceptar-exito {
+    background-color: #137333;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Modal Logout (Perfil) */
+.ventana-alerta-logout {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.icono-puerta-logout {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.ventana-alerta-logout h3 {
+    font-size: 16px;
+    color: #202124;
+    margin-bottom: 6px;
+}
+
+.ventana-alerta-logout p {
+    font-size: 13px;
+    color: #5f6368;
+    margin-bottom: 20px;
+}
+
+.fila-botones-logout {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-logout-rojo {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-logout-gris {
+    background-color: #f1f3f4;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
 }

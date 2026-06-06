@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendoza Alerta - Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="barra-superior">
+            <a href="index.html" class="btn-icono-top">
+                <img src="img/flecha.svg" alt="Atrás" width="22">
+            </a>
+            <h1 class="titulo-nav">MENDOZA ALERTA</h1>
+            <button class="btn-icono-top">
+                <img src="img/3lineas.svg" alt="Menú" width="22">
+            </button>
+        </header>
+
+        <main class="contenido-pantalla">
+            <div class="contenedor-perfil">
+                <div class="bloque-cabecera-usuario">
+                    <div class="circulo-avatar">
+                        <img src="img/perfil personita.svg" alt="Avatar" width="35">
+                    </div>
+                    <div class="textos-usuario">
+                        <h3>USUARIO</h3>
+                        <p>usuario123@gmail.com</p>
+                    </div>
+                </div>
+
+                <nav class="menu-lista-opciones">
+                    <a href="#" class="item-opcion-link">Mis ubicaciones</a>
+                    <a href="#" class="item-opcion-link">Preferencias</a>
+                    <button id="btn-abrir-logout" class="item-opcion-link link-rojo">Cerrar sesión</button>
+                </nav>
+            </div>
+        </main>
+
+        <div id="modal-logout" class="capa-bloqueo" style="display: none;">
+            <div class="ventana-alerta-logout">
+                <div class="icono-puerta-logout">🚪</div>
+                <h3>Cerrar sesión</h3>
+                <p>¿Estás seguro que querés cerrar sesión?</p>
+                <div class="fila-botones-logout">
+                    <button id="btn-confirmar-logout" class="btn-logout-rojo">Cerrar sesión</button>
+                    <button id="btn-cancelar-logout" class="btn-logout-gris">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="barra-navegacion">
+            <a href="index.html" class="item-nav">
+                <img src="img/inicio.svg" alt="Inicio" width="26">
+                <span>Inicio</span>
+            </a>
+            <a href="reportar.html" class="item-nav">
+                <img src="img/reportar banderita.svg" alt="Reportar" width="26">
+                <span>Reportar</span>
+            </a>
+            <a href="perfil.html" class="item-nav activo">
+                <img src="img/perfil personita.svg" alt="Perfil" width="26">
+                <span>Perfil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        const btnAbrirLogout = document.getElementById('btn-abrir-logout');
+        const modalLogout = document.getElementById('modal-logout');
+        const btnCancelarLogout = document.getElementById('btn-cancelar-logout');
+    
+    // === NUEVA LÍNEA: Vincula el botón rojo ===
+        const btnConfirmarLogout = document.getElementById('btn-confirmar-logout'); 
+
+    // Abre el cartel de confirmación
+        btnAbrirLogout.addEventListener('click', () => {
+            modalLogout.style.display = 'flex';
+    });
+
+    // Cierra por completo el cartel al hacer clic en Cancelar
+        btnCancelarLogout.addEventListener('click', () => {
+            modalLogout.style.display = 'none';
+    });
+
+    // === NUEVAS LÍNEAS: Hace la redirección al login ===
+        btnConfirmarLogout.addEventListener('click', () => {
+            window.location.href = 'login.html';
+    });
+    </script>
+</body>
+</html>

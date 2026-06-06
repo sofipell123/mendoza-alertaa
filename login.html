@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendoza Alerta - Iniciar Sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container-auth">
+        <div class="contenedor-auth">
+            <h2 class="titulo-auth">Iniciar sesión</h2>
+            <p class="subtitulo-auth">Ingresá tus datos para acceder.</p>
+
+            <form class="formulario-auth" action="inicio.html" method="GET">
+                <div class="grupo-input">
+                    <label>Correo electrónico</label>
+                    <input type="email" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="grupo-input">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="bloque-olvide">
+                    <a href="recuperar.html" class="enlace-olvide">Olvidé mi contraseña</a>
+                </div>
+
+                <button type="submit" class="btn-primario-auth">Ingresar</button>
+            </form>
+
+            <p class="enlace-cambio-auth">
+                ¿No tienes cuenta? <a href="registro.html">Registrate</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
